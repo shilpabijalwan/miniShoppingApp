@@ -2,6 +2,7 @@ import { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const navigation = [
   { name: "MEN", link: "/men", current: true },
@@ -19,7 +20,7 @@ export default function Header() {
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8">
+          <div className="fixed top-0 z-10 bg-gray-800 w-full  px-2 sm:px-6 lg:px-8 border text-white">
             <div className="relative flex h-16 items-center justify-between ">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -44,7 +45,7 @@ export default function Header() {
                   </Link>
                 </div>
 
-                <div className="hidden sm:ml-6 sm:block p-2">
+                <div className="hidden sm:ml-6 sm:block p-2 ">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <NavLink
@@ -67,7 +68,9 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-
+              <div className="">
+                <SearchBar />
+              </div>
               <div
                 className="max-w-80 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 
               ">
@@ -82,7 +85,7 @@ export default function Header() {
                     className="h-8 w-10"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
+                    stroke="white"
                     strokeWidth={2}>
                     <path
                       strokeLinecap="round"
@@ -102,7 +105,7 @@ export default function Header() {
                     className="h-8 w-10"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
+                    stroke="white"
                     strokeWidth={2}>
                     <path
                       strokeLinecap="round"
@@ -122,7 +125,7 @@ export default function Header() {
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
-                        stroke="currentColor"
+                        stroke="white"
                         className="h-8 w-10">
                         <path
                           strokeLinecap="round"
