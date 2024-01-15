@@ -1,6 +1,6 @@
 import React from "react";
 
-function BeautyCard({ id, title, image, category, brand, discount }) {
+function BeautyCard({ id, title, image, price, category, brand, discount }) {
   return (
     <div className="border border-red-950">
       <h1>id {id}</h1>
@@ -9,6 +9,7 @@ function BeautyCard({ id, title, image, category, brand, discount }) {
       <p>{category}</p>
       <p>discount {discount}</p>
       <p>{brand}</p>
+      <h3>price {price}</h3>
     </div>
   );
 }

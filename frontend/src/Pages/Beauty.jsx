@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   fetchBeautyDataLoading,
   fetchBeautyDataSuccess,
 } from "../features/BeautyProductSlice";
-import { fetchData } from "../DataFetched/FechBeautyData";
+
 import BeautyCard from "../Components/BeautyCard";
 import Loader from "../Loader/Loader";
 import SideBar from "../Components/SideBar";
@@ -16,21 +16,16 @@ function Beauty() {
   const [searchparam] = useSearchParams();
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const dispatch = useDispatch();
 
   const storeData = useSelector((data) => {
     return data.BeautyProductReducer;
   });
   // console.log(storeData);
-  // console.log(location);
+
   const { beautyProductsData, loading, error } = storeData;
 
-  // const obj = {
-  //   params: {
-  //     cetegory: searchparam.getAll("cetegory"),
-  //   },
-  // };
   useEffect(() => {
     dispatch(fetchBeautyDataLoading());
     const feched = async () => {

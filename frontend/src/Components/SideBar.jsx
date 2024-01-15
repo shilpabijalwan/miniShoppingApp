@@ -11,18 +11,14 @@ function SideBar() {
   const intialdiscount = searchparam.get("discount");
   const [discount, setDiscount] = useState(intialdiscount || "");
 
-  console.log(discount);
-  // const checkval = () => {
-  //   setCheckbox((pre) => !pre);
-
-  // };
+  // console.log(discount);
 
   const handleChange = (e) => {
-    // e.preventDefault();
+  
     let newCategory = [...category];
 
     const { value, name, checked } = e.target;
-    console.log(checked);
+    // console.log(checked);
 
     if (newCategory.includes(value)) {
       newCategory = newCategory.filter((ele) => ele !== value);
