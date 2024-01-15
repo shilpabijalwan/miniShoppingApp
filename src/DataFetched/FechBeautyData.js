@@ -1,5 +1,8 @@
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 
-export function fetchData() {
-  return axios.get("https://server-sepia-tau.vercel.app/SwissBeautyProducts");
-}
+export const fetchData = (obj) => {
+  return axios.get("https://server-sepia-tau.vercel.app/SwissBeautyProducts", {
+    obj,
+  });
+};

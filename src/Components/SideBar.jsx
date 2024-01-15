@@ -1,25 +1,46 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  fetchBeautyDataLoading,
-  fetchBeautyDataSuccess,
-} from "../features/BeautyProductSlice";
+import { fetchBeautyDataSuccess } from "../features/BeautyProductSlice";
+import { useSearchParams } from "react-router-dom";
 
 function SideBar() {
-  const [discount, setDiscount] = useState("");
-  // console.log(discount);
-  const dispatch = useDispatch();
+  const [searchparam, setSearchParams] = useSearchParams();
+  const intialcategory = searchparam.getAll("category");
+  const [category, setCategory] = useState(intialcategory || []);
+  const intialdiscount = searchparam.get("discount");
+  const [discount, setDiscount] = useState(intialdiscount || "");
 
+  console.log(discount);
+  // const checkval = () => {
+  //   setCheckbox((pre) => !pre);
+
+  // };
+
+  const handleChange = (e) => {
+    // e.preventDefault();
+    let newCategory = [...category];
+
+    const { value, name, checked } = e.target;
+    console.log(checked);
+
+    if (newCategory.includes(value)) {
+      newCategory = newCategory.filter((ele) => ele !== value);
+    } else {
+      newCategory.push(value);
+    }
+    setCategory(newCategory);
+  };
+
+  // console.log(catagory);
   useEffect(() => {
-    axios
-      .get(
-        `https://server-sepia-tau.vercel.app/SwissBeautyProducts?discount_gte=${discount}`
-      )
-      .then((response) => {
-        dispatch(fetchBeautyDataSuccess(response.data));
-      });
-  }, [discount]);
+    let params = {
+      category,
+      // discount,
+    };
+    discount ? (params.discount = discount) : "";
+    setSearchParams(params);
+  }, [category, discount]);
 
   return (
     <>
@@ -55,24 +76,64 @@ function SideBar() {
               <li>CATEGORIES</li>
 
               <li className=" flex gap-3 ">
-                <input type="checkbox" name="" id="" className="w-4" />
+                <input
+                  type="checkbox"
+                  name="EyeMakeup"
+                  id=""
+                  className="w-4"
+                  checked={category.includes("EyeMakeup")}
+                  value={"EyeMakeup"}
+                  onChange={handleChange}
+                />
                 <label htmlFor="">EyeMakeup</label>
               </li>
 
               <li className=" flex gap-3 ">
-                <input type="checkbox" name="" id="" className="w-4" />
+                <input
+                  type="checkbox"
+                  name="Lipstick"
+                  id=""
+                  className="w-4"
+                  value="Lipstick"
+                  checked={category.includes("Lipstick")}
+                  onChange={handleChange}
+                />
                 <label htmlFor="">Lipstick</label>
               </li>
               <li className=" flex gap-3 ">
-                <input type="checkbox" name="" id="" className="w-4" />
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-4"
+                  checked={category.includes("face Wash and cleanser")}
+                  value="face Wash and cleanser"
+                  onChange={handleChange}
+                />
                 <label htmlFor="">Face Wash and Cleanser</label>
               </li>
               <li className=" flex gap-3 ">
-                <input type="checkbox" name="" id="" className="w-4" />
+                <input
+                  type="checkbox"
+                  name="Serum and Gel"
+                  id=""
+                  className="w-4"
+                  value="serumangel"
+                  checked={category.includes("serumangel")}
+                  onChange={handleChange}
+                />
                 <label htmlFor="">Serum and Gel</label>
               </li>
               <li className=" flex gap-3 ">
-                <input type="checkbox" name="" id="" className="w-4" />
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-4"
+                  checked={category.includes("shampoo")}
+                  value="shampoo"
+                  onChange={handleChange}
+                />
                 <label htmlFor="">Shampoo</label>
               </li>
             </ul>
@@ -139,6 +200,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "10"}
                   value={10}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -150,6 +212,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "20"}
                   value={20}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -161,6 +224,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "30"}
                   value={30}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -172,6 +236,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "40"}
                   value={40}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -183,6 +248,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "50"}
                   value={50}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -194,6 +260,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "60"}
                   value={60}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -205,6 +272,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "70"}
                   value={70}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
@@ -216,6 +284,7 @@ function SideBar() {
                   name="discountRange"
                   id=""
                   className="w-4"
+                  defaultChecked={discount === "80"}
                   value={80}
                   onChange={(e) => setDiscount(e.target.value)}
                 />
