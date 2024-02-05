@@ -1,7 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchBeautyDataSuccess } from "../features/BeautyProductSlice";
+
+// import { fetchBeautyDataSuccess } from "../../features/BeautyProductSlice";
 import { useSearchParams } from "react-router-dom";
 
 function SideBar() {
@@ -14,7 +13,6 @@ function SideBar() {
   // console.log(discount);
 
   const handleChange = (e) => {
-  
     let newCategory = [...category];
 
     const { value, name, checked } = e.target;
@@ -42,9 +40,9 @@ function SideBar() {
     <>
       <aside
         id="default-sidebar"
-        className="sticky top-16 left-0 text-white w-64 h-screen transition-transform -translate-x-full sm:translate-x-0  "
+        className="sticky top-16 left-0 text-white w-38 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-4/5 px-1 py-3 overflow-y-auto bg-gray-50 dark:bg-gray-700">
           <ul className="space-y-8 font-medium">
             {/* for radio button */}
             <ul className="space-y-1 border border-gray-700 px-3">
